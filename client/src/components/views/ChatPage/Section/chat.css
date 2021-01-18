@@ -43,6 +43,12 @@
   .onlineIcon {
     margin-right: 5%;
   }
+  .ant-comment-content-author > a, .ant-comment-content-author > span {
+    padding-right: 8px;
+    font-size: 12px;
+    line-height: 18px;
+    color: white;
+  }
 
   /* mobile view */
   @media (max-width: 600px)  {

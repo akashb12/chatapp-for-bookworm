@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import moment from 'moment';
 import { Comment, Tooltip, Avatar } from 'antd';
 
 function ChatCard(props) {

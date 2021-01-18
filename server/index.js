@@ -48,8 +48,11 @@ io.on("connection", socket => {
             sender: {}
           },
           sender: data.userId,
-          ids: data.ids
+          ids: data.ids,
+          chatWith:data.ids[1],
+          chatStartedBy:data.ids[0]
         }
+
         User.findOne({ _id: datas.sender }, (err, user) => {
           if (err) return res.json({ success: false, err });
           datas.messages.sender = user
@@ -68,11 +71,14 @@ io.on("connection", socket => {
               else {
                 let chat = new Chat({
                   messages: datas.messages,
-                  ids: datas.ids
+                  ids: datas.ids,
+                  chatWith:datas.chatWith,
+                  chatStartedBy:datas.chatStartedBy
                 })
                 chat.save((err, doc) => {
                   if (err) return res.json({ status: false, error: err });
                   Chat.find({ _id: doc._id })
+                  .populate('chatWith')
                     .exec((err, doc) => {
                       return io.emit("Output Chat Message", doc)
                     })

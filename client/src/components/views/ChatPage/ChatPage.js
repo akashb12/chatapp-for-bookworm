@@ -12,7 +12,6 @@ function ChatPage(props) {
     const [chat, setchat] = useState([])
     const dispatch = useDispatch();
     const data = [props.location.state.params.buyer, props.location.state.params.seller]
-    console.log(data)
     let socket;
     let server = "http://localhost:5000";
     var connectionOptions = {
@@ -39,6 +38,10 @@ function ChatPage(props) {
         })
 
     }, []);
+    useEffect(() => {
+        console.log("chats", chat)
+
+    }, [chat]);
 
     const handleSearchChange = (e) => {
         setchatmessage(e.target.value)
@@ -70,7 +73,12 @@ function ChatPage(props) {
             <div className="infinite-container" >
                 <div className="infoBar">
                     <div className="leftInnerContainer">
-                        <h3>nidhi</h3>
+                        {chat.length ? (
+                            chat.map((chat) => (
+                                <h3>{chat.chatWith.name}</h3>
+                            ))
+                        ):
+                        <h3>new chat</h3> }
                     </div>
                 </div>
                 {chat && (

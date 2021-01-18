@@ -5,7 +5,15 @@ const chatSchema = mongoose.Schema({
     },
     messages: {
         type: Array
-    }
+    },
+    chatWith: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    chatStartedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
 }, { timestamps: true });
 
 

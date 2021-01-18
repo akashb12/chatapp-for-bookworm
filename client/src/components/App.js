@@ -8,6 +8,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import ChatPage from "./views/ChatPage/ChatPage"
 import Detail from './views/DetailPage/Detail'
+import AllChats from './views/AllChats/AllChats'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/chat" component={Auth(ChatPage, true)} />
           <Route exact path="/detail" component={Auth(Detail, null)} />
+          <Route exact path="/all" component={Auth(AllChats, null)} />
         </Switch>
       </div>
     </Suspense>

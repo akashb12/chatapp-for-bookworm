@@ -58,9 +58,3 @@ input.error {
 ::-webkit-scrollbar-thumb:window-inactive {
 background: rgba(255,0,0,0.4);
 }
-.ant-comment-content-author > a, .ant-comment-content-author > span {
-  padding-right: 8px;
-  font-size: 12px;
-  line-height: 18px;
-  color: white;
-}
