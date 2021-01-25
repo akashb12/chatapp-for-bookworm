@@ -75,7 +75,10 @@ function ChatPage(props) {
                     <div className="leftInnerContainer">
                         {chat.length ? (
                             chat.map((chat) => (
+                                chat.chatWith.name ?
                                 <h3>{chat.chatWith.name}</h3>
+                                :
+                                <h3>{chat.chatStartedBy.name}</h3>
                             ))
                         ):
                         <h3>new chat</h3> }
@@ -83,7 +86,7 @@ function ChatPage(props) {
                 </div>
                 {chat && (
                     chat.map((chat) => (
-                        <ChatCard key={chat._id}  {...chat} />
+                        <ChatCard key={chat._id}  {...chat} user={user.userData._id} />
                     ))
                 )}
             </div>

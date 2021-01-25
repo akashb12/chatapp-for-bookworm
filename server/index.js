@@ -34,18 +34,15 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/chats', require('./routes/chats'));
 io.on("connection", socket => {
   socket.on("Input Chat Message", data => {
-    d = new Date();
-    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    nd = new Date(utc + (3600000 * +5.5));
-    var ist = nd.toLocaleString();
     connect.then(db => {
       try {
         const datas = {
           messages: {
             message: data.chatMessage,
             type: data.type,
-            nowTime: ist,
-            sender: {}
+            nowTime: Date.now(),
+            sender: {},
+            seen:false
           },
           sender: data.userId,
           ids: data.ids,

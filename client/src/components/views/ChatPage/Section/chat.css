@@ -10,6 +10,13 @@
     background: black;
     border-radius: 35px;
 }
+.ant-comment {
+  position: relative;
+  width: 25vw;
+  border: 1px solid black;
+  border-radius: 35px;
+  padding: 0px 20px;
+}
 .infinite-container{
     height: 500px;
     overflow-y: scroll;
@@ -65,4 +72,11 @@
         overflow-y: scroll;
 
     }
+    .ant-comment {
+      position: relative;
+      width: 90vw;
+      border: 1px solid black;
+      border-radius: 35px;
+      padding: 0px 20px;
+  }
 }

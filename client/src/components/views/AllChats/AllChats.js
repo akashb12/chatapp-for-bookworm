@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Comment, Tooltip, Avatar } from 'antd';
+import { Comment, Badge, Avatar } from 'antd';
 import { getChats } from '../../../_actions/chat_actions';
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
@@ -22,17 +22,15 @@ function AllChats(props) {
                 response.data.chats.map((chat) => {
                     data.ids.push(chat.ids)
                 })
-                console.log("idsoutside", data)
                 axios.post(`/api/chats/allChats`, data)
                     .then(response => {
                         setchat(...chat, response.data.allChats)
-                        console.log("chats", response.data.allChats)
                     });
             });
     }, [user])
     useEffect(scrollToBottom, []);
     return (
-        <div style={{ width: '100%', }}>
+        <div style={{ width: '100%', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "30px", alignItems: "center" }}>
             {chat && (
                 chat.map((chat) => (
                     chat.chatWith.name ?
@@ -46,6 +44,10 @@ function AllChats(props) {
                                         src={chat.chatWith.image} alt={chat.chatWith.name}
                                     />
                                 }
+                                content={
+                                    <p>
+                                        {chat.messages[chat.messages.length - 1].seen ? chat.messages[chat.messages.length - 1].message : <b>new message &nbsp;<Badge count={1}></Badge></b>}
+                                    </p>}
                             /></Link> :
                         <Link to={{
                             pathname: '/chat',
@@ -57,7 +59,12 @@ function AllChats(props) {
                                         src={chat.chatStartedBy.image} alt={chat.chatStartedBy.name}
                                     />
                                 }
+                                content={
+                                    <p>
+                                        {chat.messages[chat.messages.length - 1].seen ? chat.messages[chat.messages.length - 1].message : <b>new message &nbsp;<Badge count={1}></Badge></b>}
+                                    </p>}
                             /></Link>
+
                 ))
             )}
             <div ref={messagesEndRef} />

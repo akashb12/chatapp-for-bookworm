@@ -64,8 +64,27 @@ router.post("/allChats", async (req, res) => {
                     })
                 })
         })
+});
 
-
+// seen
+router.post("/seen", async (req, res) => {
+    Chat.findOneAndUpdate(
+        { "ids": { "$all": req.body }, "messages.seen": false },
+        {
+            $set: {
+                "messages.$[].seen": true
+            }
+        },
+        { new: true },
+        (err, user) => {
+            console.log(user)
+            if (err) return res.status(400).json({ status: false, err });
+            return res.status(200).json({
+                status: true,
+                message: "message seen",
+            });
+        }
+    );
 });
 
 module.exports = router;

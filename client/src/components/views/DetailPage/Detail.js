@@ -9,7 +9,7 @@ function Detail() {
         <div>
             <Link to={{
                 pathname: '/chat',
-                state: { params: { buyer: user.userData && user.userData._id, seller: "60043dfb03ef5437f44344e2" } }
+                state: { params: { buyer: user.userData && user.userData._id, seller: "600c433fdcd2d61e981e0c33" } }
             }}> My Link </Link>
         </div>
     )
